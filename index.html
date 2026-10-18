@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julii Vincent B. Gile | Portfolio</title>
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS RESET & VARIABLES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #fafaf9;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #1c1917;
+            --text-muted: #78716c;
+            --text-light: #a8a29e;
+            --accent-color: #b45309;
+            --accent-glow: rgba(180, 83, 9, 0.12);
+            --border-color: #e7e5e4;
+            --chip-bg: #f5f5f4;
+            --font-family: 'Inter', sans-serif;
+            --max-width: 960px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* AMBIENT BACKGROUND GLOWS */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            right: -5%;
+            width: 50vw;
+            height: 50vw;
+            max-width: 600px;
+            max-height: 600px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, rgba(250, 250, 249, 0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: 10%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            max-width: 700px;
+            max-height: 700px;
+            background: radial-gradient(circle, rgba(120, 113, 108, 0.08) 0%, rgba(250, 250, 249, 0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* NAVIGATION BAR */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(250, 250, 249, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            gap: 1rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* HERO SECTION WITH DOTTED BACKGROUND GRID */
+        .hero-section {
+            position: relative;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Subtle Modern Grid Background Pattern */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            background-image: radial-gradient(var(--text-light) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.35;
+            mask-image: radial-gradient(circle at center, black 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 75%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* PROFILE PICTURE CONTAINER */
+        .profile-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            outline: 2px solid var(--border-color);
+            background-color: var(--chip-bg);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            transform: scale(1.03);
+        }
+
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* HERO TYPOGRAPHY */
+        .hero-greeting {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        /* BUTTONS */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(28, 25, 23, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: #292524;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-1px);
+        }
+
+        /* SECTION STYLES */
+        .section {
+            padding: 5.5rem 1.5rem;
+            position: relative;
+        }
+
+        /* Gradient Dividers Between Sections */
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: var(--max-width);
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--border-color) 30%, var(--border-color) 70%, transparent 100%);
+        }
+
+        .section-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-tag::before {
+            content: "";
+            width: 16px;
+            height: 2px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* ABOUT SECTION */
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* PROJECTS SECTION */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(231, 229, 228, 0.8);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+            border-color: var(--text-light);
+        }
+
+        .project-image-container {
+            width: 100%;
+            height: 260px;
+            background-color: var(--chip-bg);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .project-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image-container img {
+            transform: scale(1.03);
+        }
+
+        .project-info {
+            padding: 1.75rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(245, 245, 244, 0.8);
+            color: var(--text-muted);
+            border: 1px solid rgba(231, 229, 228, 0.6);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* SKILLS SECTION */
+        .skills-group {
+            margin-bottom: 2rem;
+        }
+
+        .skills-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pill {
+            padding: 0.5rem 1.25rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .pill:hover {
+            border-color: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-description {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background-color: var(--text-main);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 14px rgba(28, 25, 23, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .email-btn:hover {
+            background-color: #292524;
+            transform: translateY(-1px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .social-icon:hover {
+            color: var(--text-main);
+            border-color: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+            position: relative;
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">portfolio.</a>
+            
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" id="menu-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="profile-container">
+                <!-- Replace profile.jpg with your picture filename in VS Code -->
+                <img src="profile.jpg" alt="Julii Vincent B. Gile">
+            </div>
+
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-title">Julii Vincent B. Gile</h1>
+            <h2 class="hero-subtitle">Aspiring Software Developer</h2>
+            <p class="hero-description">
+                Still learning, still building — crafting clean digital experiences one project at a time.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Work</a>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <div class="section-inner">
+                <p class="section-tag">About</p>
+                <h2 class="section-title">A bit about me</h2>
+                <div class="about-text">
+                    <p>
+                        Hi, I'm <strong>Julii Vincent B. Gile</strong> — an aspiring software developer who's still learning and growing every day. I'm passionate about building clean, functional web experiences and I love diving into new technologies to sharpen my skills.
+                    </p>
+                    <p>
+                        I'm currently focused on expanding my knowledge in front-end and full-stack development. When I'm not coding, you can find me exploring new frameworks, following tutorials, or working on personal projects to put what I've learned into practice.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="section">
+            <div class="section-inner">
+                <p class="section-tag">Work</p>
+                <h2 class="section-title">Selected Projects</h2>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <!-- Replace sprout-preview.png with your project screenshot filename in VS Code -->
+                            <img src="sprout.jpg" alt="Sprout - Mobile Habit Tracker">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Sprout - Mobile Habit Tracker</h3>
+                            <p class="project-description">
+                                A serene UI/UX design for a habit-tracking app that turns daily routines into personal growth. Features customized onboarding, daily checklist management, progress analytics, and profile customization with a soothing organic theme.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Figma</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Mobile Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="section">
+            <div class="section-inner">
+                <p class="section-tag">Skills</p>
+                <h2 class="section-title">Technologies I work with</h2>
+
+                <div class="skills-group">
+                    <p class="skills-group-title">Languages</p>
+                    <div class="pills-container">
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">Laravel</span>
+                        <span class="pill">HTML</span>
+                        <span class="pill">CSS</span>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <p class="skills-group-title">Frameworks</p>
+                    <div class="pills-container">
+                        <span class="pill">Vue.js</span>
+                        <span class="pill">React</span>
+                        <span class="pill">Node.js</span>
+                        <span class="pill">Tailwind CSS</span>
+                        <span class="pill">Express</span>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <p class="skills-group-title">Tools & Platforms</p>
+                    <div class="pills-container">
+                        <span class="pill">Git</span>
+                        <span class="pill">Vercel</span>
+                        <span class="pill">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section contact-section">
+            <div class="section-inner">
+                <p class="section-tag">Contact</p>
+                <h2 class="section-title">Get in touch</h2>
+                <p class="contact-description">
+                    I'm always open to new opportunities, collaborations, or just a friendly conversation. Feel free to reach out.
+                </p>
+
+                <a href="mailto:randomgyle@gmail.com" class="email-btn">randomgyle@gmail.com</a>
+
+                <div class="social-links">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> Julii Vincent B. Gile. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            const isFlex = mobileMenu.style.display === 'flex';
+            mobileMenu.style.display = isFlex ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
